@@ -1,63 +1,50 @@
 <template>
   <div class="main">
     <div id="nav" @click="anim"><img src="@/assets/navicon.png" alt=""></div>
-    <div id="BIGH"><p>{{back}}</p></div>
+    <div id="BIGH"><p>{{dataInfo.back}}</p></div>
     <div class="content">
-      <p class="ct-name">{{content}}</p>
-      <p class="ct-intro">{{info}}</p>
+      <p class="ct-name">{{dataInfo.content}}</p>
+      <p class="ct-intro">{{dataInfo.info}}</p>
     </div>
   </div>
 </template>
 <script>
+import $ from 'jquery'
+window.$ = $
+window.jQuery = $
 export default {
-  data() {
+  data () {
     return {
-      tabFlag: true,
       rTabShow: false,
       tabStyle: {
         left: `0`,
         top: `0`
-      },
+      }
     }
   },
   props: [
-    'content',
-    'back',
-    'info'
+    'dataInfo',
+    'tabFlag'
   ],
   methods: {
-    anim: function() {
-      if(this.tabFlag){
-        this.tabFlag = false
+    anim: function () {
+      if (this.tabFlag) {
         $('.main').stop(true)
         $('#BIGH p').stop(true)
         $('.main').animate({
           width: '30rem',
-          marginRight : '+=30rem'
+          marginRight: '+=30rem'
         }, 500)
         $('#BIGH p').animate({fontSize: '10rem'}, 500)
         // this.rTabShow = true
-        this.$emit('changeFlag',true)
+        this.$emit('changeFlag', true)
         this.righTabAni()
       }
-      else{
-        this.tabFlag = true
-        $('.main').stop(true)
-        $('#BIGH p').stop(true)
-        $('.main').animate({
-          width: '50rem',
-          marginRight : '-=30rem'
-        }, 500)
-        $('#BIGH p').animate({fontSize: '14rem'}, 500, ()=>{
-          // this.rTabShow = false
-          this.$emit('changeFlag',false)
-        })
-      }
     },
-    righTabAni: function() {
+    righTabAni: function () {
       this.tabStyle.top = `${$('.main').offset().top / 16 + 3.5}rem`
       this.tabStyle.left = `${$('.main').offset().left / 16 + 20}rem`
-      this.$emit('changeStyle',this.tabStyle)
+      this.$emit('changeStyle', this.tabStyle)
     }
   }
 

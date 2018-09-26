@@ -1,5 +1,5 @@
 <template>
-  <div id="ipt">
+  <div class="ipt">
     <el-input
       v-model="input"
       placeholder="请输入内容"
@@ -10,15 +10,19 @@
   </div>
 </template>
 <script>
-  export default {
-    data() {
-      return {
-        input: ''
-      }
-    },
-    props: [
-      'preName'
-    ]
-  }
+export default {
+  data () {
+    return {
+      input: ''
+    }
+  },
+  props: [
+    'preName'
+  ]
+}
 </script>
-<style></style>
+<style scoped>
+  .ipt{
+    display: inline;
+  }
+</style>

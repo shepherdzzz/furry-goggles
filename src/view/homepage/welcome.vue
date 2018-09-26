@@ -24,7 +24,7 @@
         <div
           @mouseenter="startAnimate(1)"
           @mouseleave="endAnimate(1)"
-          :style="divStyle" 
+          :style="divStyle"
           class="grid-content bg-purple-light"
         >
           <div class="home wrap" :style="divStyle">
@@ -42,8 +42,11 @@
   </div>
 </template>
 <script>
+import $ from 'jquery'
+window.$ = $
+window.jQuery = $
 export default {
-  data() {
+  data () {
     return {
       divStyle: {
         height: ''
@@ -61,14 +64,14 @@ export default {
       }
     }
   },
-  created: function() {
+  created: function () {
     let h = $(window).height()
     let w = $(window).width()
     let _this = this
     _this.divStyle.height = `${h / 16}rem`
     _this.boxStyle.left = `${w / 64 - 8.75}rem`
     _this.boxStyle.top = `${h / 32 - 4.375}rem`
-    $(window).resize(function(event) {
+    $(window).resize(function (event) {
       h = $(window).height()
       w = $(window).width()
       _this.boxStyle.left = `${w / 64 - 8.75}rem`
@@ -77,7 +80,7 @@ export default {
     })
   },
   methods: {
-    startAnimate: function(id) {
+    startAnimate: function (id) {
       let wrapS = $('.wrap').eq(id)
       let start = $('.box').eq(id)
       start.stop(true)
@@ -90,7 +93,7 @@ export default {
         backgroundColor: '#320d7f'
       }, 500)
     },
-    endAnimate: function(id) {
+    endAnimate: function (id) {
       let wrapE = $('.wrap').eq(id)
       let end = $('.box').eq(id)
       end.stop(true)
@@ -103,7 +106,7 @@ export default {
         backgroundColor: '#F6FBF7'
       }, 500)
     },
-    startBoxAnimate: function(id) {
+    startBoxAnimate: function (id) {
       let start = $('.box').eq(id)
       start.stop(true)
       start.animate({
@@ -113,7 +116,7 @@ export default {
         backgroundColor: '#F6FBF7'
       }, 500)
     },
-    resetBoxAnimate: function(id) {
+    resetBoxAnimate: function (id) {
       let reset = $('.box').eq(id)
       reset.stop(true)
       reset.animate({
